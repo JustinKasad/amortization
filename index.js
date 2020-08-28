@@ -69,19 +69,19 @@ Generates an amortization schedule.
 @param {number} yearlyRate - The yearly rate for the loan
 @returns {MonthlyPayment[]} - Each item in the array is a monthly loan payment object
 */
-exports.amortizationSchedule = function(principal, yearsDuration, yearlyRate) {
+exports.amortizationSchedule = function(principal, monthsDuration, yearlyRate) {
   assertNumber(principal, "principal must be a number");
   assertPos(principal, "principal must be positive");
   assertNumber(yearlyRate, "yearlyRate must be a number");
   assertPos(yearlyRate, "yearlyRate must be positive");
-  assertInt(yearsDuration, "yearsDuration must be a and integer");
-  assertPos(yearsDuration, "yearsDuration must be positive");
+  assertInt(monthsDuration, "monthsDuration must be a and integer");
+  assertPos(monthsDuration, "monthsDuration must be positive");
 
-  var monthlyPayment = finance.AM(principal, yearlyRate, yearsDuration, 0);
+  var monthlyPayment = finance.AM(principal, yearlyRate, monthsDuration, 1);
   var monthlyRate = yearlyRate / 12.0 / 100.0;
   var amortizationSchedule = [];
 
-  for (var i = 0; i < (yearsDuration * 12); i++) {
+  for (var i = 0; i < (monthsDuration); i++) {
     var prevPrincipal = i === 0 ? principal : amortizationSchedule[i-1].principalBalance;
     var interestPayment = prevPrincipal * monthlyRate;
     var principalPayment = monthlyPayment - interestPayment;
