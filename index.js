@@ -73,7 +73,6 @@ exports.amortizationSchedule = function(principal, monthsDuration, yearlyRate) {
   assertNumber(principal, "principal must be a number");
   assertPos(principal, "principal must be positive");
   assertNumber(yearlyRate, "yearlyRate must be a number");
-  assertPos(yearlyRate, "yearlyRate must be positive");
   assertInt(monthsDuration, "monthsDuration must be a and integer");
   assertPos(monthsDuration, "monthsDuration must be positive");
 
